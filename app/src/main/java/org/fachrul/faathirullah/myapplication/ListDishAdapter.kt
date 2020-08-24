@@ -1,3 +1,5 @@
+package org.fachrul.faathirullah.myapplication
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -6,8 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import org.fachrul.faathirullah.myapplication.Dish
-import org.fachrul.faathirullah.myapplication.R
 
 
 class ListDishAdapter(val listDish: ArrayList<Dish>) : RecyclerView.Adapter<ListDishAdapter.ListViewHolder>() {

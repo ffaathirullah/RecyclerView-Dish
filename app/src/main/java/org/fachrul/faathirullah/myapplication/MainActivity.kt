@@ -1,13 +1,13 @@
 package org.fachrul.faathirullah.myapplication
 
-import ListDishAdapter
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var rvDishess: RecyclerView
@@ -26,40 +26,20 @@ class MainActivity : AppCompatActivity() {
 
     private fun showRecyclerList() {
         rvDishess.layoutManager = LinearLayoutManager(this)
-        val listHeroAdapter = ListDishAdapter(list)
-        rvDishess.adapter = listHeroAdapter
+        val listDishAdapter = ListDishAdapter(list)
+        rvDishess.adapter = listDishAdapter
     }
 
-    private fun showRecyclerGrid() {
-        rvDishess.layoutManager = GridLayoutManager(this, 2)
-        val gridHeroAdapter = GridDishAdapter(list)
-        rvDishess.adapter = gridHeroAdapter
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.main_menu, menu)
+        return true
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return super.onCreateOptionsMenu(menu)
+    fun About(item: MenuItem) {
+        val intent = Intent(this@MainActivity, AboutActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        setMode(item.itemId)
-        return super.onOptionsItemSelected(item)
-    }
-
-
-    private fun setMode(selectedMode: Int) {
-        when (selectedMode) {
-            R.id.action_list -> {
-                showRecyclerList()
-            }
-
-            R.id.action_grid -> {
-                showRecyclerGrid()
-            }
-
-            R.id.action_cardview -> {
-
-            }
-        }
-    }
-}
